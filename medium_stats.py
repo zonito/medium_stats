@@ -64,8 +64,6 @@ def send_daily_stats():
                 msg += f' and {stat["claps"]} Claps'
         message.append(f'**{stat["title"]}**:\n{msg}')
 
-    print('\n'.join(message))
-
     total_views = sum([obj['views'] for obj in stats])
     total_reads = sum([obj['reads'] for obj in stats])
     return gotify(f'Medium: {total_views} V, {total_reads} R', message)
