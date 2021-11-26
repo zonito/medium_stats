@@ -1,0 +1,22 @@
+name: SendDailyStats
+on:
+  schedule:
+    - cron: "55 15 * * *"
+  push:
+    branches:
+      - main
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2.3.0
+      - name: Install urllib3
+        run: pip install urllib3
+      - name: Run Python Script
+        run: python medium_stats.py
+        env:
+          GOTIFY_URL: ${{ secrets.GOTIFY_URL }}
+          MEDIUM_UID: ${{ secrets.MEDIUM_UID }}
+          MEDIUM_SID: ${{ secrets.MEDIUM_SID }}
