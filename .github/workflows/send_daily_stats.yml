@@ -1,7 +1,7 @@
 name: SendDailyStats
 on:
   schedule:
-    - cron: "55 15 * * *"
+    - cron: "55 23 * * *"
   push:
     branches:
       - main
