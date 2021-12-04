@@ -9,7 +9,7 @@ _HTTP = urllib3.PoolManager(cert_reqs=ssl.CERT_REQUIRED)
 def get_medium_stats():
     response = _HTTP.request(
         'GET',
-        'https://medium.com/me/stats',
+        'https://medium.com/me/stats?limit=100',
         headers={
             'content-type': 'application/json',
             'accept': 'application/json',
