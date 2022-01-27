@@ -33,12 +33,7 @@ def gotify(title, md_body):
             body=json.dumps({
                 'title': title,
                 'message': '\n'.join(md_body),
-                'priority': 10,
-                'extras': {
-                    'client::display': {
-                        'contentType': 'text/markdown'
-                    }
-                }
+                'priority': 1
             }),
             headers={
                 'Content-Type': 'application/json'
