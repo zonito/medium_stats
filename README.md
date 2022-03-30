@@ -5,7 +5,7 @@ Github Action to Extract Medium Stats daily and notify via [Gotify](https://gith
 
 ## Project Setup
 
-1. Fork this repo
+1. Fork this repo.
 2. Add Enviornment "Production" at `https://github.com/<username>/medium_stats/settings/environments`
 3. Add Secrets in Environment
    1. `MEDIUM_UID`: Go to medium.com -> Log In -> Open Developer Tools -> Storage -> Cookie -> `uid`
