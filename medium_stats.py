@@ -35,7 +35,8 @@ def gotify(title, md_body):
                 'message': '\n'.join(md_body)
             }),
             headers={
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'key': os.environ.get('PD_KEY')
             }
         )
     except urllib3.exceptions.MaxRetryError as error:
@@ -51,12 +52,12 @@ def send_daily_stats():
     for stat in stats[:5]:
         if not stat['views']:
             continue
-        msg = f'| {stat["reads"]} Reads / {stat["views"]} Views'
+        msg = f'{stat["reads"]} Reads / {stat["views"]} Views'
         if stat['upvotes']:
             msg += f' with {stat["upvotes"]} Fans'
             if stat['claps']:
                 msg += f' and {stat["claps"]} Claps'
-        message.append(f'**{stat["title"]}**:\n{msg}')
+        message.append(f'*{stat["title"]}*:\n{msg}')
 
     total_views = sum([obj['views'] for obj in stats])
     total_reads = sum([obj['reads'] for obj in stats])
