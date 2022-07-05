@@ -32,8 +32,7 @@ def gotify(title, md_body):
             os.environ.get('GOTIFY_URL'),
             body=json.dumps({
                 'title': title,
-                'message': '\n'.join(md_body) # ,
-                # 'priority': 1
+                'message': '\n'.join(md_body)
             }),
             headers={
                 'Content-Type': 'application/json'
