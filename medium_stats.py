@@ -29,6 +29,7 @@ def get_medium_stats():
 def pushover(title, md_body):
     print(title)
     print(os.environ.get('API_TOKEN'))
+    print(os.environ.get("USER_KEY"))
     try:
         payload = urllib.parse.urlencode({
             'title': title,
