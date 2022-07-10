@@ -1,6 +1,7 @@
 import json
 import os
 import ssl
+import urllib
 import urllib3
 
 _HTTP = urllib3.PoolManager(cert_reqs=ssl.CERT_REQUIRED)
@@ -27,17 +28,18 @@ def get_medium_stats():
 
 def pushover(title, md_body):
     try:
+        payload = urllib.parse.urlencode({
+            'title': title,
+            'message': '\n'.join(md_body),
+            'token': os.environ.get('API_TOKEN'),
+            'user': os.environ.get('USER_KEY')
+        })
         _HTTP.request(
             'POST',
             os.environ.get('GOTIFY_URL'),
-            body=json.dumps({
-                'title': title,
-                'message': '\n'.join(md_body),
-                'token': os.environ.get('API_TOKEN'),
-                'user': os.environ.get('USER_KEY')
-            }),
+            body=payload,
             headers={
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded'
             }
         )
     except urllib3.exceptions.MaxRetryError as error:
