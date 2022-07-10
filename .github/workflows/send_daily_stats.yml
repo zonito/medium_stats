@@ -20,3 +20,5 @@ jobs:
           GOTIFY_URL: ${{ secrets.GOTIFY_URL }}
           MEDIUM_UID: ${{ secrets.MEDIUM_UID }}
           MEDIUM_SID: ${{ secrets.MEDIUM_SID }}
+          API_TOKEN: ${{ secrets.API_TOKEN }}
+          USER_KEY: ${{ secrets.USER_KEY }}
