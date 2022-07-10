@@ -25,18 +25,19 @@ def get_medium_stats():
     )
 
 
-def gotify(title, md_body):
+def pushover(title, md_body):
     try:
         _HTTP.request(
             'POST',
             os.environ.get('GOTIFY_URL'),
             body=json.dumps({
                 'title': title,
-                'message': '\n'.join(md_body)
+                'message': '\n'.join(md_body),
+                'token': os.environ.get('API_TOKEN'),
+                'user': os.environ.get('USER_KEY')
             }),
             headers={
-                'Content-Type': 'application/json',
-                'key': os.environ.get('PD_KEY')
+                'Content-Type': 'application/json'
             }
         )
     except urllib3.exceptions.MaxRetryError as error:
@@ -61,7 +62,7 @@ def send_daily_stats():
 
     total_views = sum([obj['views'] for obj in stats])
     total_reads = sum([obj['reads'] for obj in stats])
-    return gotify(f'Medium: {total_views} V, {total_reads} R', message)
+    return pushover(f'Medium: {total_views} V, {total_reads} R', message)
 
 
 if __name__ == '__main__':
