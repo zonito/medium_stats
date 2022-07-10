@@ -27,6 +27,8 @@ def get_medium_stats():
 
 
 def pushover(title, md_body):
+    print(title)
+    print(md_body)
     try:
         payload = urllib.parse.urlencode({
             'title': title,
