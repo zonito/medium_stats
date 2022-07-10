@@ -36,7 +36,7 @@ def pushover(title, md_body):
             'token': os.environ.get('API_TOKEN'),
             'user': os.environ.get('USER_KEY')
         })
-        _HTTP.request(
+        response = _HTTP.request(
             'POST',
             os.environ.get('GOTIFY_URL'),
             body=payload,
@@ -44,6 +44,7 @@ def pushover(title, md_body):
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         )
+        print(response.status, response.data)
     except urllib3.exceptions.MaxRetryError as error:
         print(error)
 
